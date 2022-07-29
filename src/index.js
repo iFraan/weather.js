@@ -26,17 +26,17 @@ class API {
      * @returns API Instance
      */
     static async search(city, options = {}) {
-        if (!city) return new Error('Please provide a city to search for')
+        if (!city) throw new Error('Please provide a city to search for')
         const W = new API({...options});
         try {
-            const res = await axios.get(baseUrl.replace('{degree}', W.degree).replace('{lang}', W.lang).replace('{city}', city), {timeout: this.timeout});
+            const res = await axios.get(baseUrl.replace('{degree}', W.degree).replace('{lang}', W.lang).replace('{city}', city), {timeout: W.timeout});
             W._raw = P.parse(res.data);
             W.city = W._raw?.weatherdata?.weather?.[0] || W._raw?.weatherdata?.weather;
         } catch (err) {
-            if (err.message.includes('code 500')) return new Error('Server Internal Error')
-            return new Error(err.message)
+            if (err.message.includes('code 500')) throw new Error('Server Internal Error')
+            throw new Error(err.message)
         }
-        if (!W.city) return new Error(W._raw)
+        if (!W.city) throw new Error(W._raw)
         return W;
     }
     /**
