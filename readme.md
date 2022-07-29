@@ -1,9 +1,10 @@
 <div align="center">
 	<h1>weather.js</h1>
-   <a href="https://www.npmjs.com/package/@ifraan_/weather.js"><img src="https://badgen.net/npm/v/@ifraan_/weather.js?color=red" alt="NPM-Version"/></a>
-   <a href="https://www.npmjs.com/package/@ifraan_/weather.js"><img src="https://badgen.net/npm/dt/@ifraan_/weather.js?color=red" alt="NPM-Downloads"/></a>
-   <a href="https://github.com/iFraan/weather.js"><img src="https://badgen.net/github/stars/iFraan/weather.js?color=green" alt="Github Stars"/></a>
-   <a href="https://github.com/iFraan/weather.js/issues"><img src="https://badgen.net/github/issues/iFraan/weather.js?color=green" alt="Issues"/></a>
+	<a href="https://www.codefactor.io/repository/github/ifraan/weather.js"><img src="https://www.codefactor.io/repository/github/ifraan/weather.js/badge" alt="CodeFactor" /></a>
+	<a href="https://www.npmjs.com/package/@ifraan_/weather.js"><img src="https://badgen.net/npm/v/@ifraan_/weather.js?color=blue" alt="NPM-Version"/></a>
+	<a href="https://www.npmjs.com/package/@ifraan_/weather.js"><img src="https://badgen.net/npm/dt/@ifraan_/weather.js?color=blue" alt="NPM-Downloads"/></a>
+	<a href="https://github.com/iFraan/weather.js"><img src="https://badgen.net/github/stars/iFraan/weather.js?color=yellow" alt="Github Stars"/></a>
+	<a href="https://github.com/iFraan/weather.js/issues"><img src="https://badgen.net/github/issues/iFraan/weather.js?color=green" alt="Issues"/></a>
    <h2>This a wrapper of the unnoficial MSN weather API</h2>
 </div>
 
