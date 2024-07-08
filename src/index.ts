@@ -39,7 +39,12 @@ class API {
         if (!city) throw new Error('Please provide a city to search for')
         const instance = new API({ ...options });
         try {
-            const { data } = await axios.get(baseUrl.replace('{degree}', instance.degree).replace('{lang}', instance.lang).replace('{city}', city), { timeout: instance.timeout });
+            const { data } = await axios.get(baseUrl
+                .replace('{degree}', instance.degree)
+                .replace('{lang}', instance.lang)
+                .replace('{city}', city),
+                { timeout: instance.timeout }
+            );
             instance._raw = Parser.parse(data);
             instance.city = instance._raw?.weatherdata?.weather?.[0] || instance._raw?.weatherdata?.weather;
         } catch (err) {
