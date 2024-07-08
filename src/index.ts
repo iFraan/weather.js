@@ -1,19 +1,29 @@
-const axios = require('axios');
-const {XMLParser} = require('fast-xml-parser');
+// const axios = require('axios');
+// const {XMLParser} = require('fast-xml-parser');
 
-const P = new XMLParser({
+import axios from 'axios';
+import { XMLParser } from 'fast-xml-parser';
+import { BaseOptions } from './types';
+
+const Parser = new XMLParser({
     ignoreAttributes: false,
-    attributeNamePrefix : ""
+    attributeNamePrefix: ""
 })
 
 const baseUrl = 'http://weather.service.msn.com/find.aspx?src=outlook&weadegreetype={degree}&culture={lang}&weasearchstr={city}';
 
 class API {
 
-    constructor(options = {}){
-        this.lang = options.lang || 'en-US';
-        this.degree = options.degree || 'F';
-        this.timeout = options.timeout || 10_000; // 10 seconds
+    lang?: string;
+    degree?: string;
+    timeout?: number;
+    city?: any;
+    _raw?: any;
+
+    constructor(options: BaseOptions) {
+        this.lang = options?.lang ?? 'en-US';
+        this.degree = options?.degree ?? 'F';
+        this.timeout = options?.timeout ?? 10_000; // 10 seconds
         this._raw = {}
     }
 
@@ -25,12 +35,12 @@ class API {
      * @param {Number} options.timeout Default 10 seconds
      * @returns API Instance
      */
-    static async search(city, options = {}) {
+    static async search(city: string, options: BaseOptions = {}) {
         if (!city) throw new Error('Please provide a city to search for')
-        const W = new API({...options});
+        const W = new API({ ...options });
         try {
-            const res = await axios.get(baseUrl.replace('{degree}', W.degree).replace('{lang}', W.lang).replace('{city}', city), {timeout: W.timeout});
-            W._raw = P.parse(res.data);
+            const res = await axios.get(baseUrl.replace('{degree}', W.degree).replace('{lang}', W.lang).replace('{city}', city), { timeout: W.timeout });
+            W._raw = Parser.parse(res.data);
             W.city = W._raw?.weatherdata?.weather?.[0] || W._raw?.weatherdata?.weather;
         } catch (err) {
             if (err.message.includes('code 500')) throw new Error('Server Internal Error')
@@ -84,7 +94,7 @@ class API {
     get raw() { return this._raw; }
 }
 
-
-module.exports = {
+export default API;
+export {
     API
 }
