@@ -13,9 +13,9 @@ const baseUrl = 'http://weather.service.msn.com/find.aspx?src=outlook&weadegreet
 class API {
 
     lang: string;
-    degree: string;
+    degree: BaseOptions['lang'];
     timeout: number;
-    city?: any;
+    city?: MSNWeather;
     _raw?: MSNResponse;
 
     /**
@@ -61,7 +61,7 @@ class API {
      * Forecast
      * @returns next days weather forecast
      */
-    forecast(): MSNForecast {
+    forecast(): MSNForecast[] {
         return this.city.forecast;
     }
     /**

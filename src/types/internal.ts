@@ -1,6 +1,6 @@
 export type BaseOptions = {
     lang?: string;
-    degree?: string;
+    degree?: 'C' | 'F';
     timeout?: number;
 }
 
